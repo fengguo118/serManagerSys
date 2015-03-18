@@ -1,0 +1,25 @@
+{
+  "name": "serManagerSys",
+  "version": "1.0.0",
+  "description": "This is nodejs and angularjs achieve manager system!",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengguo118/serManagerSys.git"
+  },
+  "keywords": [
+    "service",
+    "manager",
+    "nodejs",
+    "angularjs"
+  ],
+  "author": "guofang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengguo118/serManagerSys/issues"
+  },
+  "homepage": "https://github.com/fengguo118/serManagerSys"
+}
