@@ -1,94 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>
-		HTLHome Login controller
-	</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap.theme.min.css" rel="stylesheet">
-	
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-        <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-		  <style>
-		  body {
-		    padding-top: 40px;
-		    padding-bottom: 40px;
-		    background-color: #eee;
-		  }
+<!doctype html>
+<html lang="en" ng-app="routerApp">
 
-		  .form-signin {
-		    max-width: 330px;
-		    padding: 15px;
-		    margin: 0 auto;
-		  }
-		  .form-signin .form-signin-heading,
-		  .form-signin .checkbox {
-		    margin-bottom: 10px;
-		  }
-		  .form-signin .checkbox {
-		    font-weight: normal;
-		  }
-		  .form-signin .form-control {
-		    position: relative;
-		    height: auto;
-		    -webkit-box-sizing: border-box;
-		       -moz-box-sizing: border-box;
-		            box-sizing: border-box;
-		    padding: 10px;
-		    font-size: 16px;
-		  }
-		  .form-signin .form-control:focus {
-		    z-index: 2;
-		  }
-		  .form-signin input[type="email"] {
-		    margin-bottom: -1px;
-		    border-bottom-right-radius: 0;
-		    border-bottom-left-radius: 0;
-		  }
-		  .form-signin input[type="password"] {
-		    margin-bottom: 10px;
-		    border-top-left-radius: 0;
-		    border-top-right-radius: 0;
-		  }
-		  </style>
-		  
-  <script type="text/javascript">
-          $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(_result) {
-              if (remote_ip_info.ret == '1') {
-                  alert('国家：' + remote_ip_info.country + '<BR>省：' + remote_ip_info.province + '<BR>市：' + remote_ip_info.city + '<BR>区：' + remote_ip_info.district + '<BR>ISP：' + remote_ip_info.isp + '<BR>类型：' + remote_ip_info.type + '<BR>其他：' + remote_ip_info.desc);
-              } else {
-                  alert('没有找到匹配的IP地址信息！');
-              }
-          });
-  </script>
-	
+<head>
+    <meta charset="utf-8">
+    <title>HTLhome后台管理系统</title>
+    <link rel="stylesheet" href="js/bootstrap-3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/ng-grid-2.0.12/ng-grid.css">
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/angular-1.3.0.14/angular.js"></script>
+    <script src="js/angular-1.3.0.14/angular-animate.min.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="js/ng-grid-2.0.12/ng-grid.debug.js"></script>
+
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/services.js"></script>
 </head>
+
 <body>
-	<div class="container">
-	<form class="form-signin">
-	<h2 class="form-signin-heading">HTLHome Login</h2>
-	<lable for="inputEmail" class="sr-only">Email address</lable>
-	<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-	<lable for="inputPassword" class="sr-only">Password</lable>
-	<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-	<div class="checkbox">
-	<lable>
-		<input type="checkbox" value="remember-me">Remember me
-	</lable>
-	</div>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	</form>
-	</div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-     <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-     <!-- Include all compiled plugins (below), or include individual files as needed -->
-     <script src="js/bootstrap.min.js"></script>
+    <div ui-view></div>
 </body>
+
 </html>

@@ -64,7 +64,27 @@ app.use(express.static(__dirname + '/upload'));
 /*
  * 如下是接口函数的主题
  */
+/*web API*/
+app.post('/login', function(req, res){
+	console.log(req.body);
+	var selStr = "SELECT * FROM user_table WHERE username=? AND password=?";
+	mysqlCon.query(selStr, [req.body.username, req.body.password], function(err, result){
+		if (err){
+			console.log(err);
+			return res.status(505).send("invalid username or password!");
+		}
+		console.log(result);
+		if (result && result.length > 0){
+			return res.send("login success");
+		}	
+	});	
+});
 
+app.post('/webProduct', function(req, res){
+	
+});
+
+/*app API*/
 app.post('/product', function(req, res){
 	console.log(req.body);
 	var selStr = "SELECT productAttr as productTitle, imageUrl FROM peizhi_table";
