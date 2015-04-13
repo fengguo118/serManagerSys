@@ -53,7 +53,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
                         $scope.setPagingData(data, page, pageSize);
                     });
             } else {
-                $http.post('/webProduct', $stateParams.bookType)
+                $http.post('/webProduct', {"productType":$stateParams.bookType})
                     .success(function(largeLoad) {
 						console.log(largeLoad);
                         $scope.setPagingData(largeLoad, page, pageSize);
@@ -87,7 +87,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
         enableCellEdit: true,
         enablePinning: true,
         columnDefs: [{
-            field: 'index',
+            field: 'Id',
             displayName: 'Id',
             width: 60,
             pinnable: false,

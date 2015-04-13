@@ -81,7 +81,32 @@ app.post('/login', function(req, res){
 });
 
 app.post('/webProduct', function(req, res){
-	
+	console.log(req.body);
+	var productType = req.body.productType;
+	var selStr;
+	if (parseInt(productType) == 0){
+		selStr = "SELECT id as Id, productAttr as name, configAttr as configure, SkinClass as skin, price FROM peizhi_table";
+		mysqlCon.query(selStr, function(err, result){
+			if (err){
+				console.log(err);
+				return res.status(505).send("can not found data");
+			}
+			console.log(result);
+			return res.send(result);
+		});
+	}
+	else
+	{
+		selStr = "SELECT id as Id, productAttr as name, configAttr as configure, SkinClass as skin, price FROM peizhi_table WHERE productType=?";
+		mysqlCon.query(selStr, [req.body.productType], function(err, result){
+			if (err){
+				console.log(err);
+				return res.status(505).send("can not found data");
+			}
+			console.log(result);
+			return res.send(result);
+		});
+	}
 });
 
 /*app API*/

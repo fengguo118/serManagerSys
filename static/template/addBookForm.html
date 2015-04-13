@@ -8,47 +8,64 @@
                 <form class="form-horizontal" role="form" name="form">
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            书名：
+                            Product Model：
                         </label>
                         <div class="col-md-10">
-                            <input type="email" class="form-control" placeholder="最多64个字符" ng-model="userInfo.email">
+                            <input type="text" class="form-control" placeholder="请输入产品货号" ng-model="userInfo.productAttr">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            类型：
+                            Product Type：
                         </label>
                         <div class="col-md-10">
                             <select class="form-control">
-                                <option>计算机</option>
-                                <option>金融</option>
-                                <option>哲学</option>
-                                <option>高端办公</option>
+                                <option>Relax Studio</option>
+                                <option>Gallery</option>
+                                <option>Fabbrica</option>
+                                <option>Muse</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            出版日期：
+                            Config Code：
                         </label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" placeholder="日期格式YYYY-mm-dd" ng-model="userInfo.password">
+                            <input type="text" class="form-control" placeholder="请输入配置代码" ng-model="userInfo.configAttr">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            作者：
+                            Skin Class：
                         </label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" placeholder="最多16个字符" ng-model="userInfo.password">
+                            <input type="text" class="form-control" placeholder="请输入皮类（BR， BV， GO，NC）" ng-model="userInfo.SkinClass">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            是否有电子书：
+                            Price：
                         </label>
                         <div class="col-md-10">
-                            <input type="checkbox">
+                            <input type="text" class="form-control" placeholder="请输入价格" ng-model="userInfo.price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            add Image to Product Model：
+                        </label>
+						<script language=JavaScript>
+						function show(){
+							var attach = document.getElementById("addBtn");
+							var imgAttach = document.getElementById("addImage");
+							imgAttach.style.display="";
+							attach.style.display="none";
+						}
+						</script>
+                        <div class="col-md-10">
+							<button id="addBtn" class="btn btn-warning" onClick="show()"> Add</button>
+                            <input id="addImage" type="file" name="fileattach" style="display:none">
                         </div>
                     </div>
                     <div class="form-group">
