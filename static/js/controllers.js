@@ -16,6 +16,37 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
 			console.log(error);
 		});
 	};
+		
+	$scope.saveData = function(userInfo){
+		console.log(userInfo);
+		if (window.needUploadFile) {
+			console.log("upload image file!");
+			document.getElementById("uploadFormsub").action = "/upload";
+			$('#uploadFormsub').ajaxSubmit({
+				error: function (error) {
+					console.log("============================");
+					window.needUploadFile = false;
+					window.document.querySelector('#uploadFormsub').outerHTML = window.document.querySelector('#uploadFormsub').outerHTML;
+					document.querySelector('#uploadFileNameLabel').innerText = '';
+					console.log(error);
+					alert('文件上传失败');
+				},
+				success: function (uploadFileData) {
+					console.log("=============+++++++===============");
+					window.needUploadFile = false;
+					window.document.querySelector('#uploadFormsub').outerHTML = window.document.querySelector('#uploadFormsub').outerHTML;
+					userInfo.imageUrl = "image/"+uploadFileData.filename;
+					console.log(userInfo);
+					$http.post('/addProduct', userInfo).success(function(data){
+						alert('添加信息成功');
+						$location.path("/0");
+					}).error(function(error){
+						console.log(error);
+					});
+				}
+			})
+		}
+	};
 	
     $scope.filterOptions = {
         filterText: "",
@@ -43,7 +74,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
-                $http.post('src/data/books' + $stateParams.bookType + '.json')
+                $http.post('/webProduct', {"productType":$stateParams.bookType})
                     .success(function(largeLoad) {
 						console.log(largeLoad);
                         data = largeLoad.filter(function(item) {
@@ -139,3 +170,22 @@ bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $s
     //请模仿上面的代码，用$http到后台获取数据，把这里的例子实现完整
     
 });
+
+
+window.needUploadFile = false;
+window.markUploadFileFlag = function (o) {
+  //限制上传文件大小
+  var limitFileSize = 200 * 1024 ; //200kb
+  if (document.querySelector('#fileUpload').files[0].size > limitFileSize) {
+    return alert('上传文件大小不得超过200kb');
+  }
+  window.needUploadFile = true;
+// myform = document.createElement("form");
+// myform.action="/upload";
+// myform.method ="post";
+// myform.enctype = "multipart/form-data";
+// myform.id = "uploadFormsub";
+// document.getElementById("uploadForm").appendChild(myform);
+// $(o).parent().find("input:file").eq(0).appendTo($(myform));
+  // console.log(window.needUploadFile)
+}

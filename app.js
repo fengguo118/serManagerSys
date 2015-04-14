@@ -6,6 +6,8 @@ var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
 var cookieparser = require('cookie-parser');
+var multer = require('multer');
+var fs     = require('fs');
 var config = require('./lib/config.js').config;
 
 /*mysql connect manager*/
@@ -57,6 +59,7 @@ app.use(bodyparser.urlencoded({
 	extended: false
 }));
 app.use(bodyparser.json());
+app.use(multer({dest: './upload/image'}));
 app.use(cookieparser());
 app.use(express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/upload'));
@@ -107,6 +110,37 @@ app.post('/webProduct', function(req, res){
 			return res.send(result);
 		});
 	}
+});
+
+
+/*
+******************************
+* 消息中的图片文件上传
+******************************
+*/
+app.post('/upload', function (req, res) {
+ console.log("============",req.files);
+  var uploadFileInfo = req.files.fileUpload;
+  if (!uploadFileInfo) {
+    return res.status(400).send({message: 'null uploadFileInfo'});
+  }
+  var nowFilePath = uploadFileInfo.path;
+
+  var uploadFileName = Date.now().toString() + '.' + uploadFileInfo.name.split('.')[uploadFileInfo.name.split('.').length - 1];
+  var newFilePath = 'upload/image/' + uploadFileName;
+
+  fs.rename(nowFilePath, newFilePath, function (error) {
+    if (error) {
+      console.log(error);
+      return res.status(500).send({message: 'rename wrong'});
+    }
+    return res.send({filename: uploadFileName});
+  })
+});
+
+app.post('/addProduct', function(req, res){
+	console.log("+++++++", req.body);
+	return res.send("intert success");	
 });
 
 /*app API*/
