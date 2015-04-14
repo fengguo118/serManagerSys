@@ -140,7 +140,16 @@ app.post('/upload', function (req, res) {
 
 app.post('/addProduct', function(req, res){
 	console.log("+++++++", req.body);
-	return res.send("intert success");	
+	var selStr = "insert into peizhi_table set productAttr=?, configAttr=?, SkinClass=?, price=?, imageUrl=?, productType=?";
+	mysqlCon.query(selStr, [req.body.productAttr, req.body.configAttr, 
+		req.body.SkinClass, req.body.price, req.body.imageUrl, req.body.productType], function(err, result){
+		if (err) {
+			console.log(err);
+			return res.status(505).send("can not found data");
+		};
+		console.log(result);
+		return res.send("intert success");
+	});
 });
 
 /*app API*/
