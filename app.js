@@ -39,7 +39,7 @@ var keepConnected = function() {
 	setInterval(function() {
 		mysqlCon.query("SELECT 1", function(error) {
 			if (error) {
-				mysqlCon = mysql.createConnection(mysqlCfg);
+				mysqlCon = mysql.createConnection(config.mysqlCfg);
 				mysqlCon.connect();
 				mysqlCon.on('error', function(errof) {
 					return errorFun(error);
