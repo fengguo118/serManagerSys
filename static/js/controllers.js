@@ -46,6 +46,14 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
 				}
 			})
 		}
+		else{
+			$http.post('/addProduct', userInfo).success(function(data){
+				alert('添加信息成功');
+				$location.path("/0");
+			}).error(function(error){
+				console.log(error);
+			});
+		}
 	};
 	
     $scope.filterOptions = {
@@ -105,6 +113,8 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
             $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
         }
     }, true);
+	
+	$scope.mySelections = [];
 
     $scope.gridOptions = {
         data: 'books',
@@ -149,11 +159,12 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
             enableCellEdit: false,
             sortable: false,
             pinnable: false,
-            cellTemplate: '<div><a ui-sref="bookdetail({bookId:row.getProperty(col.field)})" id="{{row.getProperty(col.field)}}">Details</a></div>'
+            cellTemplate: '<div><a ui-sref="bookdetail({productModel:row.getProperty(col.field)})">Details</a></div>'
         }],
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'totalServerItems',
+		selectedItems:$scope.mySelections,
         pagingOptions: $scope.pagingOptions,
         filterOptions: $scope.filterOptions
     };
@@ -167,6 +178,7 @@ bookListModule.controller('BookListCtrl', function($scope, $http, $location, $st
 var bookDetailModule = angular.module("BookDetailModule", []);
 bookDetailModule.controller('BookDetailCtrl', function($scope, $http, $state, $stateParams) {
     console.log($stateParams);
+	console.log($scope.mySelections);
     //请模仿上面的代码，用$http到后台获取数据，把这里的例子实现完整
     
 });

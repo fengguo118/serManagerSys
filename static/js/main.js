@@ -53,7 +53,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'template/addBookForm.html'
         })
         .state('bookdetail', {
-            url: '/bookdetail/:bookId', //注意这里在路由中传参数的方式
+            url: '/bookdetail/:productModel', //注意这里在路由中传参数的方式
             templateUrl: 'template/bookDetail.html'
         })
 });

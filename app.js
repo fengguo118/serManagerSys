@@ -155,7 +155,7 @@ app.post('/addProduct', function(req, res){
 /*app API*/
 app.post('/product', function(req, res){
 	console.log(req.body);
-	var selStr = "SELECT productAttr as productTitle, imageUrl FROM peizhi_table";
+	var selStr = "SELECT productAttr as productTitle, imageUrl FROM peizhi_table WHERE imageUrl is not null";
 	mysqlCon.query(selStr, function(err, result){
 		if (err){
 			console.log(err);
